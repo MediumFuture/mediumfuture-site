@@ -22,18 +22,46 @@
 <body>
   <!-- Герой секция с голяма "картина" под формата на градиент -->
   <header class="hero">
-    <h1>Добре дошли в Medium Future</h1>
-    <p>Доверете се на нашите медиуми и вижте какво крие бъдещето за вас</p>
+    <!-- Горна навигационна лента -->
+    <nav class="top-nav">
+      <div class="logo">Medium&nbsp;Future</div>
+      <ul class="nav-links">
+        <li><a href="#medium-cards">Медиуми</a></li>
+        <li><a href="news.html">Новини</a></li>
+        <li><a href="about.html">За&nbsp;нас</a></li>
+        <li><a href="contact.html">Контакти</a></li>
+      </ul>
+      <div class="auth-buttons">
+        <a href="pricing.html" class="signup-btn">Регистрация</a>
+        <a href="chat.html" class="login-btn">Вход</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <h1>Открийте своя път към успеха</h1>
+      <p>Доверете се на нашите медиуми за ясновидство, таро, астрология и повече</p>
+      <a href="pricing.html" class="cta-button">Започнете</a>
+    </div>
+    <div class="badge">
+      <span class="minutes">5 мин</span>
+      <span class="free">БЕЗПЛАТНО</span>
+    </div>
   </header>
+
+  <!-- Секция "Медиуми онлайн" с бутон за разглеждане -->
+  <section class="psychics-online">
+    <h2>Медиуми онлайн</h2>
+    <p>В момента десетки медиуми очакват вашето обаждане или чат.</p>
+    <a href="#medium-cards" class="browse-button">Прегледай всички медиуми</a>
+  </section>
 
   <!-- Секция с медиумите -->
   <section class="mediums">
     <h2>Нашите медиуми</h2>
     <!-- Контейнер за динамичните карти на медиумите -->
     <div id="medium-cards" class="cards"></div>
- 
+  </section>
 
-      <!-- Секция с отзиви -->
+  <!-- Секция с отзиви -->
   <section id="testimonials" class="testimonials">
     <h2>Отзиви</h2>
     <div class="testimonial">
@@ -50,6 +78,28 @@
     </div>
   </section>
 
+  <!-- Секция "Защо да изберете Medium Future?" -->
+  <section class="why-us">
+    <h2>Защо да изберете Medium&nbsp;Future?</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Професионализъм</h3>
+        <p>Нашите медиуми са селектирани с внимание и преминават през строг процес на оценка, за да ви предоставят най‑точните и надеждни прогнози.</p>
+      </div>
+      <div class="feature">
+        <h3>Първи минути безплатно</h3>
+        <p>Получавате пет безплатни минути при първата си консултация, за да опознаете нашата платформа без риск.</p>
+      </div>
+      <div class="feature">
+        <h3>24/7 достъп</h3>
+        <p>Платформата е достъпна по всяко време, за да може да се свържете с вашия медиум, когато имате нужда.</p>
+      </div>
+      <div class="feature">
+        <h3>Обратна връзка</h3>
+        <p>Получавате отзиви и оценки за всеки медиум, за да направите информиран избор при следващата си сесия.</p>
+      </div>
+    </div>
+  </section>
 
   <!-- Футър -->
   <footer>

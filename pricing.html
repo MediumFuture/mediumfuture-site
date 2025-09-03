@@ -33,7 +33,7 @@
         <p class="minutes">10 минути</p>
         <p class="price">30&nbsp;€</p>
         <p>Перфектен за кратка консултация с медиум.</p>
-        <button class="buy-button" onclick="startPayment('basic')">Купи</button>
+        <div id="paypal-button-basic"></div>
       </div>
       <!-- Пакет 2 -->
       <div class="package">
@@ -41,7 +41,7 @@
         <p class="minutes">25 минути</p>
         <p class="price">65&nbsp;€</p>
         <p>За по-задълбочени въпроси и насоки.</p>
-        <button class="buy-button" onclick="startPayment('standard')">Купи</button>
+        <div id="paypal-button-standard"></div>
       </div>
       <!-- Пакет 3 -->
       <div class="package">
@@ -49,7 +49,7 @@
         <p class="minutes">60 минути</p>
         <p class="price">150&nbsp;€</p>
         <p>Най-добрият избор за цялостна консултация и планиране.</p>
-        <button class="buy-button" onclick="startPayment('premium')">Купи</button>
+        <div id="paypal-button-premium"></div>
       </div>
     </div>
   </section>
@@ -66,38 +66,73 @@
     <p>&copy; 2025 Medium Future. Всички права запазени.</p>
   </footer>
 
-  <!-- Скрипт за симулация на плащания -->
+  <!-- PayPal интеграция -->
+  <!-- Зареждаме PayPal SDK с вашия клиентски идентификатор. Валутата е EUR. -->
+  <script src="https://www.paypal.com/sdk/js?client-id=TW2CZTFCS3EYS&currency=EUR"></script>
   <script>
-    /**
-     * Симулация на плащане. В реална среда тук трябва да се интегрира
-     * платежна платформа като Stripe или PayPal. Тази функция просто
-     * показва прозорец за потвърждение и демонстрира къде би бил
-     * процесът на плащане.
-     * @param {string} packageId Идентификатор на избрания пакет
-     */
-    function startPayment(packageId) {
-      let description;
-      let minutesToAdd = 0;
-      if (packageId === 'basic') {
-        description = 'Основен пакет: 10 минути за 30 €';
-        minutesToAdd = 10;
-      } else if (packageId === 'standard') {
-        description = 'Стандартен пакет: 25 минути за 65 €';
-        minutesToAdd = 25;
-      } else if (packageId === 'premium') {
-        description = 'Премиум пакет: 60 минути за 150 €';
-        minutesToAdd = 60;
-      }
-      if (confirm('Желаете ли да продължите към плащане за ' + description + '?')) {
-        // Добавяме минутите към локалния баланс
-        let credits = parseFloat(localStorage.getItem('creditsMinutes')) || 0;
-        credits += minutesToAdd;
-        localStorage.setItem('creditsMinutes', credits.toString());
-        alert('Успешно добавихте ' + minutesToAdd + ' минути към вашия баланс.');
-        // Пренасочваме към чата
-        window.location.href = 'chat.html';
-      }
+    // Помощна функция: добавя минути към наличния баланс в localStorage
+    function addMinutes(minutes) {
+      let credits = parseInt(localStorage.getItem('creditsMinutes') || '0');
+      credits += minutes;
+      localStorage.setItem('creditsMinutes', credits);
     }
+
+    // PayPal бутон за основен пакет (10 минути за 30 €)
+    paypal.Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '30.00' },
+            description: 'Основен пакет: 10 минути за 30 €'
+          }]
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          addMinutes(10);
+          alert('Благодарим за покупката, ' + details.payer.name.given_name + '! Успешно добавихме 10 минути към вашия баланс.');
+          window.location.href = 'chat.html';
+        });
+      }
+    }).render('#paypal-button-basic');
+
+    // PayPal бутон за стандартен пакет (25 минути за 65 €)
+    paypal.Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '65.00' },
+            description: 'Стандартен пакет: 25 минути за 65 €'
+          }]
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          addMinutes(25);
+          alert('Благодарим за покупката, ' + details.payer.name.given_name + '! Успешно добавихме 25 минути към вашия баланс.');
+          window.location.href = 'chat.html';
+        });
+      }
+    }).render('#paypal-button-standard');
+
+    // PayPal бутон за премиум пакет (60 минути за 150 €)
+    paypal.Buttons({
+      createOrder: function (data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount: { value: '150.00' },
+            description: 'Премиум пакет: 60 минути за 150 €'
+          }]
+        });
+      },
+      onApprove: function (data, actions) {
+        return actions.order.capture().then(function (details) {
+          addMinutes(60);
+          alert('Благодарим за покупката, ' + details.payer.name.given_name + '! Успешно добавихме 60 минути към вашия баланс.');
+          window.location.href = 'chat.html';
+        });
+      }
+    }).render('#paypal-button-premium');
   </script>
 </body>
 </html>
