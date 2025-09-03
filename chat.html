@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Чат – Medium Future</title>
+  <!-- SEO мета тагове -->
+  <meta name="description" content="Чат с медиум от Medium Future – задайте своите въпроси и получете отговори на момента.">
+  <meta name="keywords" content="чат с медиум, бъдеще, консултации, ясновидство">
+  <!-- Open Graph тагове -->
+  <meta property="og:title" content="Чат с медиум – Medium Future">
+  <meta property="og:description" content="Задайте своите въпроси и получете ясновидски насоки от опитни медиуми.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mediumfuture.bg/chat.html">
+  <meta property="og:image" content="https://mediumfuture.bg/images/favicon.png">
+  <!-- Canonical -->
+  <link rel="canonical" href="https://mediumfuture.bg/chat.html">
+  <!-- Стил и икона -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+</head>
+<body>
+  <header class="hero small">
+    <h1>Чат с медиум</h1>
+    <p>Тук можете да симулирате чат с медиум. Реалната функционалност ще изисква интеграция със сървър.</p>
+  </header>
+  <!-- Чат интерфейс -->
+  <section class="chat-section">
+    <!-- Таймер за оставащи минути -->
+    <div id="timer" class="timer"></div>
+
+    <!-- Съобщение при липса на кредити -->
+    <div id="no-credit" class="no-credit" style="display:none;">
+      <p>Нямате налични минути. Моля, закупете пакет от <a href="pricing.html">страницата с цени</a>.</p>
+      <button id="demo-button" class="buy-button">Демо сесия (5 минути)</button>
+    </div>
+
+    <div id="chat-window" class="chat-window">
+      <div class="message bot">Здравейте! Как мога да ви помогна днес?</div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="user-message" placeholder="Въведете вашето съобщение..."/>
+      <button id="send-button">Изпрати</button>
+    </div>
+    <p class="chat-note">*Това е примерен чат. За реален чат ще трябва да се интегрира услуга като Tawk.to, Crisp или друга платформа за чат на живо.*</p>
+  </section>
+  <footer>
+    <nav>
+      <a href="index.html">Начало</a>
+      <a href="about.html">За нас</a>
+      <a href="contact.html">Контакти</a>
+      <a href="pricing.html">Цени</a>
+    </nav>
+    <p>&copy; 2025 Medium Future. Всички права запазени.</p>
+  </footer>
+  <!-- Скрипт за чат с брояч на минути и кредити -->
+  <script>
+    // Текстове за автоматични отговори от "медиума"
+    const responses = [
+      'Моля, уточнете въпроса си.',
+      'Ще направя всичко възможно да ви помогна.',
+      'Бъдещето е подготвило интересни неща за вас.',
+      'Вашата интуиция е ключът към успеха.',
+      'Вярвайте в себе си и във вашата съдба.'
+    ];
+
+    function addMessage(text, sender) {
+      const chatWindow = document.getElementById('chat-window');
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      messageDiv.classList.add(sender);
+      messageDiv.textContent = text;
+      chatWindow.appendChild(messageDiv);
+      chatWindow.scrollTop = chatWindow.scrollHeight;
+    }
+
+    let timerInterval;
+    let secondsRemaining = 0;
+
+    // Обновява таймера и съхранява оставащите минути в localStorage
+    function updateTimer() {
+      const timerEl = document.getElementById('timer');
+      if (!timerEl) return;
+      const minutes = Math.floor(secondsRemaining / 60);
+      const seconds = secondsRemaining % 60;
+      timerEl.textContent = 'Оставащо време: ' + minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
+      // Записваме оставащите минути като дробно число в localStorage
+      const minutesLeft = secondsRemaining / 60;
+      localStorage.setItem('creditsMinutes', minutesLeft.toFixed(3));
+      if (secondsRemaining <= 0) {
+        clearInterval(timerInterval);
+        disableChat();
+      }
+    }
+
+    // Стартира сесията с определен брой минути
+    function startSession(minutes) {
+      secondsRemaining = Math.floor(minutes * 60);
+      updateTimer();
+      timerInterval = setInterval(function () {
+        secondsRemaining--;
+        updateTimer();
+      }, 1000);
+      // Показваме таймера и скриваме съобщението за липса на кредити
+      document.getElementById('timer').style.display = 'block';
+      document.getElementById('no-credit').style.display = 'none';
+      // Активираме полето за въвеждане и бутона
+      document.getElementById('user-message').disabled = false;
+      document.getElementById('send-button').disabled = false;
+    }
+
+    // Деактивира чат интерфейса при изчерпани минути
+    function disableChat() {
+      document.getElementById('user-message').disabled = true;
+      document.getElementById('send-button').disabled = true;
+      addMessage('Вашите минути са изчерпани. Моля, купете пакет, за да продължите.', 'bot');
+      document.getElementById('timer').textContent = 'Минутите са изчерпани';
+    }
+
+    window.addEventListener('DOMContentLoaded', function () {
+      const sendButton = document.getElementById('send-button');
+      const userInput = document.getElementById('user-message');
+      const demoButton = document.getElementById('demo-button');
+      const noCreditDiv = document.getElementById('no-credit');
+      const timerEl = document.getElementById('timer');
+
+      // По подразбиране таймерът е скрит
+      timerEl.style.display = 'none';
+
+      let credits = parseFloat(localStorage.getItem('creditsMinutes')) || 0;
+      // Ако има кредити, започваме с тях
+      if (credits > 0) {
+        startSession(credits);
+      } else {
+        // Показваме съобщението за липса на кредити и изключваме полето за въвеждане
+        noCreditDiv.style.display = 'block';
+        userInput.disabled = true;
+        sendButton.disabled = true;
+      }
+
+      // Демо сесия от 5 минути
+      if (demoButton) {
+        demoButton.addEventListener('click', function () {
+          startSession(5);
+        });
+      }
+
+      // Изпращане на съобщение
+      sendButton.addEventListener('click', function () {
+        const text = userInput.value.trim();
+        if (!text || secondsRemaining <= 0) return;
+        addMessage(text, 'user');
+        userInput.value = '';
+        // Автоматичен отговор
+        setTimeout(function () {
+          const reply = responses[Math.floor(Math.random() * responses.length)];
+          addMessage(reply, 'bot');
+        }, 800);
+      });
+    });
+  </script>
+</body>
+</html>

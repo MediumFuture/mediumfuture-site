@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Цени – Medium Future</title>
+  <!-- SEO и Open Graph -->
+  <meta name="description" content="Вижте пакетите и цените на Medium Future – изберете най-подходящия пакет от минути за вашата консултация.">
+  <meta name="keywords" content="пакети, цени, консултации, минути">
+  <meta property="og:title" content="Пакети и цени – Medium Future">
+  <meta property="og:description" content="Изберете най-подходящия пакет от минути за вашата консултация.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://mediumfuture.bg/pricing.html">
+  <meta property="og:image" content="https://mediumfuture.bg/images/favicon.png">
+  <link rel="canonical" href="https://mediumfuture.bg/pricing.html">
+  <!-- Стил и икона -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+</head>
+<body>
+  <!-- Герой секция за цени -->
+  <header class="hero small">
+    <h1>Пакети и цени</h1>
+    <p>Изберете най-подходящия пакет от минути за вашата консултация</p>
+  </header>
+
+  <section class="pricing">
+    <h2>Нашите предложения</h2>
+    <div class="packages">
+      <!-- Пакет 1 -->
+      <div class="package">
+        <h3>Основен пакет</h3>
+        <p class="minutes">10 минути</p>
+        <p class="price">30&nbsp;€</p>
+        <p>Перфектен за кратка консултация с медиум.</p>
+        <button class="buy-button" onclick="startPayment('basic')">Купи</button>
+      </div>
+      <!-- Пакет 2 -->
+      <div class="package">
+        <h3>Стандартен пакет</h3>
+        <p class="minutes">25 минути</p>
+        <p class="price">65&nbsp;€</p>
+        <p>За по-задълбочени въпроси и насоки.</p>
+        <button class="buy-button" onclick="startPayment('standard')">Купи</button>
+      </div>
+      <!-- Пакет 3 -->
+      <div class="package">
+        <h3>Премиум пакет</h3>
+        <p class="minutes">60 минути</p>
+        <p class="price">150&nbsp;€</p>
+        <p>Най-добрият избор за цялостна консултация и планиране.</p>
+        <button class="buy-button" onclick="startPayment('premium')">Купи</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Футър -->
+  <footer>
+    <nav>
+      <a href="index.html">Начало</a>
+      <a href="about.html">За нас</a>
+      <a href="contact.html">Контакти</a>
+      <a href="news.html">Новини</a>
+      <a href="pricing.html">Цени</a>
+    </nav>
+    <p>&copy; 2025 Medium Future. Всички права запазени.</p>
+  </footer>
+
+  <!-- Скрипт за симулация на плащания -->
+  <script>
+    /**
+     * Симулация на плащане. В реална среда тук трябва да се интегрира
+     * платежна платформа като Stripe или PayPal. Тази функция просто
+     * показва прозорец за потвърждение и демонстрира къде би бил
+     * процесът на плащане.
+     * @param {string} packageId Идентификатор на избрания пакет
+     */
+    function startPayment(packageId) {
+      let description;
+      let minutesToAdd = 0;
+      if (packageId === 'basic') {
+        description = 'Основен пакет: 10 минути за 30 €';
+        minutesToAdd = 10;
+      } else if (packageId === 'standard') {
+        description = 'Стандартен пакет: 25 минути за 65 €';
+        minutesToAdd = 25;
+      } else if (packageId === 'premium') {
+        description = 'Премиум пакет: 60 минути за 150 €';
+        minutesToAdd = 60;
+      }
+      if (confirm('Желаете ли да продължите към плащане за ' + description + '?')) {
+        // Добавяме минутите към локалния баланс
+        let credits = parseFloat(localStorage.getItem('creditsMinutes')) || 0;
+        credits += minutesToAdd;
+        localStorage.setItem('creditsMinutes', credits.toString());
+        alert('Успешно добавихте ' + minutesToAdd + ' минути към вашия баланс.');
+        // Пренасочваме към чата
+        window.location.href = 'chat.html';
+      }
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,363 @@
+/*
+ * Основен стил за уеб сайта Medium Future
+ * Създаден на 2025-08-11
+ */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  background-color: #f2f2f2;
+  color: #333;
+}
+
+/* Герой секция (голяма картина) */
+.hero {
+  /* Използваме градиент вместо изображение за фон,
+     за да се избегне нуждата от външен файл. Цветовете
+     напомнят на космическа сцена и мистична атмосфера. */
+  background: linear-gradient(135deg, #4b0082, #1e90ff, #8a2be2);
+  color: #ffffff;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero.small {
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #6a008f, #3b5fbf, #6e3fb6);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin: 0 0 20px;
+}
+
+.hero p {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+/* Секция с медиумите */
+.mediums {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.mediums h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #4b0082;
+}
+
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: #8a2be2;
+  color: #ffffff;
+  font-size: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 10px;
+}
+
+.card h3 {
+  margin-bottom: 10px;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: 1rem;
+  color: #555555;
+}
+
+.buttons {
+  margin-top: 10px;
+}
+
+.call-button,
+.chat-button {
+  display: inline-block;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.call-button {
+  background-color: #28a745; /* зелено */
+}
+
+.chat-button {
+  background-color: #007bff; /* синьо */
+}
+
+.call-button:hover {
+  background-color: #218838;
+}
+
+.chat-button:hover {
+  background-color: #0056b3;
+}
+
+/* Секция за съдържание (използвана в други страници) */
+.content {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+  text-align: left;
+}
+
+.content h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #4b0082;
+}
+
+.content p {
+  margin-bottom: 15px;
+  font-size: 1rem;
+  color: #333333;
+}
+
+/* Новини */
+.news-item {
+  background-color: #ffffff;
+  border-left: 4px solid #4b0082;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.news-item h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.news-item small {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+  color: #777777;
+}
+
+/* Навигация в футъра */
+footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  text-align: center;
+}
+
+footer nav {
+  margin-bottom: 10px;
+}
+
+footer nav a {
+  margin: 0 10px;
+  color: #007bff;
+  text-decoration: none;
+}
+
+footer nav a:hover {
+  text-decoration: underline;
+}
+
+footer p {
+  margin: 0;
+  color: #666666;
+  font-size: 0.9rem;
+}
+
+/* Секция за цени */
+.pricing {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.pricing h2 {
+  margin-bottom: 20px;
+  font-size: 2rem;
+  color: #4b0082;
+}
+
+.packages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.package {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 280px;
+  text-align: center;
+}
+
+.package h3 {
+  margin-top: 0;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.package .minutes {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #8a2be2;
+}
+
+.package .price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #28a745;
+  margin: 10px 0;
+}
+
+.package p {
+  margin: 5px 0 15px;
+  font-size: 1rem;
+  color: #555555;
+}
+
+/* Бутон за покупка */
+.buy-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #8a2be2;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.buy-button:hover {
+  background-color: #6e3fb6;
+}
+
+/* Чат секция */
+.chat-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+.chat-window {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  padding: 15px;
+  height: 300px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.message {
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  width: fit-content;
+  max-width: 70%;
+  clear: both;
+}
+
+.message.user {
+  background-color: #007bff;
+  color: #ffffff;
+  margin-left: auto;
+}
+
+.message.bot {
+  background-color: #f1f0f0;
+  color: #333333;
+  margin-right: auto;
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input-area input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.chat-input-area button {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.chat-input-area button:hover {
+  background-color: #218838;
+}
+
+.chat-note {
+  font-size: 0.9rem;
+  color: #777777;
+  margin-top: 10px;
+}
+
+/* Таймер за оставащи минути */
+.timer {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #8a2be2;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/* Съобщение за липса на кредити */
+.no-credit {
+  background-color: #fff0f6;
+  border-left: 4px solid #dc3545;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #333333;
+}
+
+.no-credit a {
+  color: #007bff;
+  text-decoration: underline;
+}
+
+.no-credit a:hover {
+  text-decoration: none;
+}
