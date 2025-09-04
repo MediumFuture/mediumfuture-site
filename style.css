@@ -55,10 +55,11 @@ body {
 /* Значка за безплатните минути */
 .badge {
   position: absolute;
-  right: 40px;
-  top: 40px;
+  
   background: radial-gradient(circle at center, #ffffff, #ffe7f3);
-  border-radius: 50%;
+ left: 20px;
+  top: 160px;
+  right: auto;
   width: 120px;
   height: 120px;
   display: flex;
