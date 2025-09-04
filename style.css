@@ -87,6 +87,100 @@ body {
   margin: 0;
 }
 
+/* Модални прозорци */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+.modal-content {
+  background-color: #ffffff;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: left;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+.modal-content h2 {
+  margin-top: 0;
+  color: #4b0082;
+}
+.modal-content input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.modal-content button {
+  width: 100%;
+  padding: 10px;
+  background-color: #4b0082;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.modal-content button:hover {
+  background-color: #3522a5;
+}
+.modal-content .close {
+  float: right;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #4b0082;
+}
+
+/* Препоръчани медиуми */
+.recommended {
+  background-color: #f9f5ff;
+  padding: 40px 20px;
+  text-align: center;
+}
+.recommended h2 {
+  font-size: 2rem;
+  color: #4b0082;
+  margin-bottom: 20px;
+}
+.recommended-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+.recommended .card p {
+  color: #555555;
+}
+
+/* Бутон за връщане в началото */
+#scrollTopBtn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 10px 15px;
+  font-size: 1.2rem;
+  background-color: #4b0082;
+  color: #ffffff;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  display: none;
+  z-index: 100;
+}
+#scrollTopBtn:hover {
+  background-color: #3522a5;
+}
+
 /* Горна навигационна лента */
 .top-nav {
   position: absolute;

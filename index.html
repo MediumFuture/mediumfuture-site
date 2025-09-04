@@ -32,8 +32,9 @@
         <li><a href="contact.html">Контакти</a></li>
       </ul>
       <div class="auth-buttons">
-        <a href="pricing.html" class="signup-btn">Регистрация</a>
-        <a href="chat.html" class="login-btn">Вход</a>
+        <!-- Променяме линковете, за да отварят модални прозорци -->
+        <a href="#" class="signup-btn" onclick="openModal('signupModal'); return false;">Регистрация</a>
+        <a href="#" class="login-btn" onclick="openModal('loginModal'); return false;">Вход</a>
       </div>
     </nav>
     <div class="hero-content">
@@ -52,6 +53,43 @@
     <h2>Медиуми онлайн</h2>
     <p>В момента десетки медиуми очакват вашето обаждане или чат.</p>
     <a href="#medium-cards" class="browse-button">Прегледай всички медиуми</a>
+  </section>
+
+  <!-- Секция с препоръчани медиуми -->
+  <section class="recommended">
+    <h2>Препоръчани медиуми</h2>
+    <div class="cards recommended-cards">
+      <div class="card">
+        <div class="avatar">A</div>
+        <h3>Медиум Ана</h3>
+        <p>Специалист в таро и астрология.</p>
+        <p>Рейтинг: &#9733;&#9733;&#9733;&#9733;&#9734;</p>
+        <div class="buttons">
+          <a href="#" class="call-button">Обади се</a>
+          <a href="#" class="chat-button">Чат</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="avatar">Б</div>
+        <h3>Медиум Борис</h3>
+        <p>Нумерология и руни – вашият личен водач.</p>
+        <p>Рейтинг: &#9733;&#9733;&#9733;&#9734;&#9734;</p>
+        <div class="buttons">
+          <a href="#" class="call-button">Обади се</a>
+          <a href="#" class="chat-button">Чат</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="avatar">C</div>
+        <h3>Медиум Силвия</h3>
+        <p>Кафе на зърна и ясновидство – търсите ли отговор?</p>
+        <p>Рейтинг: &#9733;&#9733;&#9733;&#9733;&#9733;</p>
+        <div class="buttons">
+          <a href="#" class="call-button">Обади се</a>
+          <a href="#" class="chat-button">Чат</a>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- Секция с медиумите -->
@@ -83,19 +121,19 @@
     <h2>Защо да изберете Medium&nbsp;Future?</h2>
     <div class="features">
       <div class="feature">
-        <h3>Професионализъм</h3>
+        <h3>👁️ Професионализъм</h3>
         <p>Нашите медиуми са селектирани с внимание и преминават през строг процес на оценка, за да ви предоставят най‑точните и надеждни прогнози.</p>
       </div>
       <div class="feature">
-        <h3>Първи минути безплатно</h3>
+        <h3>🎁 Първи минути безплатно</h3>
         <p>Получавате пет безплатни минути при първата си консултация, за да опознаете нашата платформа без риск.</p>
       </div>
       <div class="feature">
-        <h3>24/7 достъп</h3>
+        <h3>⏰ 24/7 достъп</h3>
         <p>Платформата е достъпна по всяко време, за да може да се свържете с вашия медиум, когато имате нужда.</p>
       </div>
       <div class="feature">
-        <h3>Обратна връзка</h3>
+        <h3>🌟 Обратна връзка</h3>
         <p>Получавате отзиви и оценки за всеки медиум, за да направите информиран избор при следващата си сесия.</p>
       </div>
     </div>
@@ -111,6 +149,67 @@
     </nav>
     <p>&copy; 2025 Medium Future. Всички права запазени.</p>
   </footer>
+
+  <!-- Плаващ бутон за връщане в началото -->
+  <button id="scrollTopBtn" title="Върни се горе">↑</button>
+
+  <!-- Модален прозорец за регистрация -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('signupModal')">&times;</span>
+      <h2>Регистрация</h2>
+      <form id="signupForm">
+        <input type="text" placeholder="Име" required>
+        <input type="email" placeholder="Имейл" required>
+        <input type="password" placeholder="Парола" required>
+        <button type="submit">Регистрирай се</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Модален прозорец за вход -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Вход</h2>
+      <form id="loginForm">
+        <input type="email" placeholder="Имейл" required>
+        <input type="password" placeholder="Парола" required>
+        <button type="submit">Влез</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Скриптове за модалните прозорци и бутона за връщане горе -->
+  <script>
+    // Отваряне на модален прозорец
+    function openModal(id) {
+      document.getElementById(id).style.display = 'block';
+    }
+    // Затваряне на модален прозорец
+    function closeModal(id) {
+      document.getElementById(id).style.display = 'none';
+    }
+    // Показване/скриване на бутона за връщане горе
+    window.onscroll = function() { toggleScrollButton(); };
+    function toggleScrollButton() {
+      const btn = document.getElementById('scrollTopBtn');
+      if (!btn) return;
+      const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
+      btn.style.display = scrollPos > 200 ? 'block' : 'none';
+    }
+    // Scroll to top behaviour
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    // Свързване на клика към функцията
+    document.addEventListener('DOMContentLoaded', function() {
+      const scrollBtn = document.getElementById('scrollTopBtn');
+      if (scrollBtn) {
+        scrollBtn.addEventListener('click', scrollToTop);
+      }
+    });
+  </script>
   <!-- Скрипт за зареждане на медиумите -->
   <script src="mediums.js"></script>
 </body>
