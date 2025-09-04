@@ -128,6 +128,16 @@
       timerEl.style.display = 'none';
 
       let credits = parseFloat(localStorage.getItem('creditsMinutes')) || 0;
+      // Проверяваме дали в URL има параметър credits, добавен след покупка през PayPal формата
+      const urlParams = new URLSearchParams(window.location.search);
+      const creditsParam = parseFloat(urlParams.get('credits') || '0');
+      if (!isNaN(creditsParam) && creditsParam > 0) {
+        credits += creditsParam;
+        // Записваме обновените кредити
+        localStorage.setItem('creditsMinutes', credits.toString());
+        // Можем да изчистим параметъра от URL чрез презареждане без параметри (по избор)
+        // history.replaceState(null, '', window.location.pathname);
+      }
       // Ако има кредити, започваме с тях
       if (credits > 0) {
         startSession(credits);

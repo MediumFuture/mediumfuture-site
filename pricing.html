@@ -33,7 +33,20 @@
         <p class="minutes">10 минути</p>
         <p class="price">30&nbsp;€</p>
         <p>Перфектен за кратка консултация с медиум.</p>
-        <div id="paypal-button-basic"></div>
+        <!-- PayPal плащане чрез HTML форма за личен акаунт -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+          <input type="hidden" name="cmd" value="_xclick">
+          <!-- Използваме предоставения от потребителя merchant ID като бизнес идентификатор -->
+          <input type="hidden" name="business" value="TW2CZTFCS3EYS">
+          <input type="hidden" name="item_name" value="Основен пакет – 10 минути">
+          <input type="hidden" name="amount" value="30.00">
+          <input type="hidden" name="currency_code" value="EUR">
+          <!-- След успешно плащане пренасочваме към чат страницата и добавяме кредити като параметър -->
+          <input type="hidden" name="return" value="https://mediumfuture.github.io/mediumfuture-site/chat.html?credits=10">
+          <!-- След отказ от плащане връщаме отново към страницата с цени -->
+          <input type="hidden" name="cancel_return" value="https://mediumfuture.github.io/mediumfuture-site/pricing.html">
+          <input type="submit" class="buy-button" value="Купи">
+        </form>
       </div>
       <!-- Пакет 2 -->
       <div class="package">
@@ -41,7 +54,16 @@
         <p class="minutes">25 минути</p>
         <p class="price">65&nbsp;€</p>
         <p>За по-задълбочени въпроси и насоки.</p>
-        <div id="paypal-button-standard"></div>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="TW2CZTFCS3EYS">
+          <input type="hidden" name="item_name" value="Стандартен пакет – 25 минути">
+          <input type="hidden" name="amount" value="65.00">
+          <input type="hidden" name="currency_code" value="EUR">
+          <input type="hidden" name="return" value="https://mediumfuture.github.io/mediumfuture-site/chat.html?credits=25">
+          <input type="hidden" name="cancel_return" value="https://mediumfuture.github.io/mediumfuture-site/pricing.html">
+          <input type="submit" class="buy-button" value="Купи">
+        </form>
       </div>
       <!-- Пакет 3 -->
       <div class="package">
@@ -49,7 +71,16 @@
         <p class="minutes">60 минути</p>
         <p class="price">150&nbsp;€</p>
         <p>Най-добрият избор за цялостна консултация и планиране.</p>
-        <div id="paypal-button-premium"></div>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="TW2CZTFCS3EYS">
+          <input type="hidden" name="item_name" value="Премиум пакет – 60 минути">
+          <input type="hidden" name="amount" value="150.00">
+          <input type="hidden" name="currency_code" value="EUR">
+          <input type="hidden" name="return" value="https://mediumfuture.github.io/mediumfuture-site/chat.html?credits=60">
+          <input type="hidden" name="cancel_return" value="https://mediumfuture.github.io/mediumfuture-site/pricing.html">
+          <input type="submit" class="buy-button" value="Купи">
+        </form>
       </div>
     </div>
   </section>
@@ -66,73 +97,6 @@
     <p>&copy; 2025 Medium Future. Всички права запазени.</p>
   </footer>
 
-  <!-- PayPal интеграция -->
-  <!-- Зареждаме PayPal SDK с вашия клиентски идентификатор. Валутата е EUR. -->
-  <script src="https://www.paypal.com/sdk/js?client-id=TW2CZTFCS3EYS&currency=EUR"></script>
-  <script>
-    // Помощна функция: добавя минути към наличния баланс в localStorage
-    function addMinutes(minutes) {
-      let credits = parseInt(localStorage.getItem('creditsMinutes') || '0');
-      credits += minutes;
-      localStorage.setItem('creditsMinutes', credits);
-    }
-
-    // PayPal бутон за основен пакет (10 минути за 30 €)
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: { value: '30.00' },
-            description: 'Основен пакет: 10 минути за 30 €'
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          addMinutes(10);
-          alert('Благодарим за покупката, ' + details.payer.name.given_name + '! Успешно добавихме 10 минути към вашия баланс.');
-          window.location.href = 'chat.html';
-        });
-      }
-    }).render('#paypal-button-basic');
-
-    // PayPal бутон за стандартен пакет (25 минути за 65 €)
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: { value: '65.00' },
-            description: 'Стандартен пакет: 25 минути за 65 €'
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          addMinutes(25);
-          alert('Благодарим за покупката, ' + details.payer.name.given_name + '! Успешно добавихме 25 минути към вашия баланс.');
-          window.location.href = 'chat.html';
-        });
-      }
-    }).render('#paypal-button-standard');
-
-    // PayPal бутон за премиум пакет (60 минути за 150 €)
-    paypal.Buttons({
-      createOrder: function (data, actions) {
-        return actions.order.create({
-          purchase_units: [{
-            amount: { value: '150.00' },
-            description: 'Премиум пакет: 60 минути за 150 €'
-          }]
-        });
-      },
-      onApprove: function (data, actions) {
-        return actions.order.capture().then(function (details) {
-          addMinutes(60);
-          alert('Благодарим за покупката, ' + details.payer.name.given_name + '! Успешно добавихме 60 минути към вашия баланс.');
-          window.location.href = 'chat.html';
-        });
-      }
-    }).render('#paypal-button-premium');
-  </script>
+  <!-- PayPal интеграция чрез HTML форми: скриптовете на Smart Buttons са премахнати, защото ползваме класически бутони.-->
 </body>
 </html>
