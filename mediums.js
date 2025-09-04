@@ -11,8 +11,9 @@ const mediumsData = [
     description: 'Специалист в таро и астрология.',
     // Цена на минута в долари
     price: 2.92,
-    // Линк към Clarity профила за обаждания
-    call: 'https://clarity.fm/mediumfuture',
+    // Линк за обаждания: използваме нашия Twilio номер.
+    // Използваме tel: линк, за да отворим вграденото приложение за телефон
+    call: 'tel:+15712978633',
     initial: 'А',
     // Път до изображението за аватара. Ако е зададено, вместо инициал ще се показва картинка.
     image: 'images/avatars/ana.png'
@@ -21,7 +22,7 @@ const mediumsData = [
     name: 'Медиум Борис',
     description: 'Нумерология и руни – вашият личен водач.',
     price: 2.92,
-    call: 'https://clarity.fm/mediumfuture',
+    call: 'tel:+15712978633',
     initial: 'Б',
     image: 'images/avatars/boris.png'
   },
@@ -29,7 +30,7 @@ const mediumsData = [
     name: 'Медиум Силвия',
     description: 'Кафе на зърна и ясновидство – търсите ли отговор?',
     price: 2.92,
-    call: 'https://clarity.fm/mediumfuture',
+    call: 'tel:+15712978633',
     initial: 'С',
     image: 'images/avatars/silvia.png'
   },
@@ -37,7 +38,7 @@ const mediumsData = [
     name: 'Медиум Даниела',
     description: 'Карти таро и кристална топка – ново попълнение в нашия екип.',
     price: 2.92,
-    call: 'https://clarity.fm/mediumfuture',
+    call: 'tel:+15712978633',
     initial: 'Д',
     image: 'images/avatars/daniela.png'
   }
@@ -81,10 +82,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const buttons = document.createElement('div');
     buttons.className = 'buttons';
     const callBtn = document.createElement('a');
-    // Ако е зададен линк за обаждания (Clarity), използваме него, иначе тел номера
+    // Ако е зададен линк за обаждания, използваме него; ако е tel: линк, не задаваме target
     if (medium.call) {
       callBtn.href = medium.call;
-      callBtn.target = '_blank';
+      // Добавяме target=_blank само ако линкът е http/https
+      if (!medium.call.startsWith('tel:')) {
+        callBtn.target = '_blank';
+      }
     } else {
       callBtn.href = 'tel:' + medium.phone;
     }
