@@ -15,9 +15,12 @@ const mediumsData = [
     // Използваме tel: линк, за да отворим вграденото приложение за телефон
     call: 'tel:+15712978633',
     initial: 'А',
-    // Път до изображението за аватара. Ако е зададено, вместо инициал ще се показва картинка.
-    // Изображението е в кореновата директория, тъй като GitHub не създава папка images/avatars
-    image: 'ana.png'
+    // Път до изображението за аватара. Файловете са в основната директория на сайта,
+    // за да няма нужда от създаване на поддиректории в GitHub. Ако промените местоположението,
+    // коригирайте и тук съответно.
+    image: 'ana.png',
+    // Страница с пълен профил за този медиум
+    profile: 'ana.html'
   },
   {
     name: 'Медиум Борис',
@@ -25,7 +28,9 @@ const mediumsData = [
     price: 2.92,
     call: 'tel:+15712978633',
     initial: 'Б',
-    image: 'boris.png'
+    // Използваме изображението на Борис (мъж нумеролог). Файлът е в корена на сайта
+    image: 'boris.png',
+    profile: 'boris.html'
   },
   {
     name: 'Медиум Силвия',
@@ -33,7 +38,9 @@ const mediumsData = [
     price: 2.92,
     call: 'tel:+15712978633',
     initial: 'С',
-    image: 'silvia.png'
+    // Използваме снимка на Силвия (зърна кафе). Файлът е в корена на сайта
+    image: 'silvia.png',
+    profile: 'silvia.html'
   },
   {
     name: 'Медиум Даниела',
@@ -41,7 +48,9 @@ const mediumsData = [
     price: 2.92,
     call: 'tel:+15712978633',
     initial: 'Д',
-    image: 'daniela.png'
+    // Изображението на Даниела (кристална топка). Файлът е в корена на сайта
+    image: 'daniela.png',
+    profile: 'daniela.html'
   }
 ];
 
@@ -51,6 +60,14 @@ document.addEventListener('DOMContentLoaded', function () {
   mediumsData.forEach(function (medium) {
     const card = document.createElement('div');
     card.className = 'card';
+
+    // Ако е зададен профил, правим цялата карта кликаема
+    if (medium.profile) {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', function () {
+        window.location.href = medium.profile;
+      });
+    }
 
     // Създаваме контейнер за аватар
     const avatar = document.createElement('div');
@@ -101,6 +118,9 @@ document.addEventListener('DOMContentLoaded', function () {
     chatBtn.className = 'chat-button';
     chatBtn.textContent = 'Чат';
     buttons.appendChild(chatBtn);
+    // Спираме събитието click да не се предава към картата
+    callBtn.addEventListener('click', function (e) { e.stopPropagation(); });
+    chatBtn.addEventListener('click', function (e) { e.stopPropagation(); });
     card.appendChild(buttons);
 
     container.appendChild(card);

@@ -30,6 +30,7 @@
         <li><a href="news.html">Новини</a></li>
         <li><a href="about.html">За&nbsp;нас</a></li>
         <li><a href="contact.html">Контакти</a></li>
+        <li><a href="join.html">Стани медиум</a></li>
       </ul>
       <div class="auth-buttons">
         <!-- Променяме линковете, за да отварят модални прозорци -->
@@ -59,11 +60,12 @@
   <section class="recommended">
     <h2>Препоръчани медиуми</h2>
     <div class="cards recommended-cards">
-      <div class="card">
+        <div class="card">
         <div class="avatar">
-          <img class="avatar-img" src="ana.png" alt="Медиум Ана">
+          <!-- Изображението е поставено в папка images/avatars -->
+          <a href="ana.html"><img class="avatar-img" src="images/avatars/ana.png" alt="Медиум Ана"></a>
         </div>
-        <h3>Медиум Ана</h3>
+        <h3><a href="ana.html">Медиум Ана</a></h3>
         <p>Специалист в таро и астрология.</p>
         <p>Рейтинг: &#9733;&#9733;&#9733;&#9733;&#9734;</p>
         <div class="buttons">
@@ -72,11 +74,12 @@
           <a href="chat.html?medium=Медиум%20Ана" class="chat-button">Чат</a>
         </div>
       </div>
-      <div class="card">
+        <div class="card">
         <div class="avatar">
-          <img class="avatar-img" src="boris.png" alt="Медиум Борис">
+          <!-- Изображението е поставено в папка images/avatars -->
+          <a href="boris.html"><img class="avatar-img" src="images/avatars/boris.png" alt="Медиум Борис"></a>
         </div>
-        <h3>Медиум Борис</h3>
+        <h3><a href="boris.html">Медиум Борис</a></h3>
         <p>Нумерология и руни – вашият личен водач.</p>
         <p>Рейтинг: &#9733;&#9733;&#9733;&#9734;&#9734;</p>
         <div class="buttons">
@@ -84,11 +87,12 @@
           <a href="chat.html?medium=Медиум%20Борис" class="chat-button">Чат</a>
         </div>
       </div>
-      <div class="card">
+        <div class="card">
         <div class="avatar">
-          <img class="avatar-img" src="silvia.png" alt="Медиум Силвия">
+          <!-- Снимка на Силвия (гледане на кафе) от папка images/avatars -->
+          <a href="silvia.html"><img class="avatar-img" src="images/avatars/silvia.png" alt="Медиум Силвия"></a>
         </div>
-        <h3>Медиум Силвия</h3>
+        <h3><a href="silvia.html">Медиум Силвия</a></h3>
         <p>Кафе на зърна и ясновидство – търсите ли отговор?</p>
         <p>Рейтинг: &#9733;&#9733;&#9733;&#9733;&#9733;</p>
         <div class="buttons">
@@ -219,6 +223,7 @@
   </script>
   <!-- Скрипт за зареждане на медиумите -->
   <!-- Добавяне на параметър за версия към пътя на скрипта, за да принуди браузъра да зареди новата версия -->
-  <script src="mediums.js?v=2"></script>
+  <!-- Добавяме параметър за версия, за да изчистим кеша при актуализации -->
+  <script src="mediums.js?v=3"></script>
 </body>
 </html>

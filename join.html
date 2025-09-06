@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Стани медиум | Medium Future</title>
+  <meta name="description" content="Кандидатствайте, за да станете част от екипа на Medium Future. Изпратете информация за опит, специализации и кратка биография.">
+  <meta name="keywords" content="стани медиум, кандидатстване, Medium Future">
+  <link rel="canonical" href="https://mediumfuture.github.io/mediumfuture-site/join.html">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="images/favicon.png" type="image/png">
+</head>
+<body>
+  <header class="hero small">
+    <h1>Стани част от екипа</h1>
+    <p>Искаш да споделиш своя дар с клиентите ни? Кандидатствай сега.</p>
+  </header>
+
+  <section class="content profile-section">
+    <h2>Форма за кандидатстване</h2>
+    <p>Попълнете полетата по-долу, за да кандидатствате като медиум в Medium Future. След изпращане ще се свържем с вас за потвърждение. Моля, имайте предвид, че снимките трябва да се изпратят на нашия имейл <a href="mailto:info@mediumfuture.com">info@mediumfuture.com</a>, тъй като в момента сайтът не поддържа качване на файлове.</p>
+    <form class="apply-form">
+      <label for="name">Име:</label>
+      <input type="text" id="name" name="name" required>
+      
+      <label for="email">Имейл:</label>
+      <input type="email" id="email" name="email" required>
+      
+      <label for="specialty">Специализация (тaро, астрология, гледане на кафе и др.):</label>
+      <input type="text" id="specialty" name="specialty" required>
+
+      <label for="experience">Години опит:</label>
+      <input type="number" id="experience" name="experience" min="0" required>
+
+      <label for="bio">Кратка биография:</label>
+      <textarea id="bio" name="bio" rows="5" required></textarea>
+
+      <button type="submit" class="cta-button">Изпрати кандидатура</button>
+    </form>
+  </section>
+
+  <footer>
+    <nav>
+      <a href="index.html">Начало</a>
+      <a href="news.html">Новини</a>
+      <a href="about.html">За нас</a>
+      <a href="contact.html">Контакти</a>
+    </nav>
+    <p>&copy; 2025 Medium Future. Всички права запазени.</p>
+  </footer>
+
+  <script>
+    // Предотвратяваме изпращане на формата. Тук можем да добавим логика за изпращане по имейл.
+    document.querySelector('.apply-form').addEventListener('submit', function(event) {
+      event.preventDefault();
+      alert('Благодарим ви за кандидатурата! Ще се свържем с вас скоро.');
+      this.reset();
+    });
+  </script>
+</body>
+</html>
