@@ -16,7 +16,8 @@ const mediumsData = [
     call: 'tel:+15712978633',
     initial: 'А',
     // Път до изображението за аватара. Ако е зададено, вместо инициал ще се показва картинка.
-    image: 'images/avatars/ana.png'
+    // Изображението е в кореновата директория, тъй като GitHub не създава папка images/avatars
+    image: 'ana.png'
   },
   {
     name: 'Медиум Борис',
@@ -24,7 +25,7 @@ const mediumsData = [
     price: 2.92,
     call: 'tel:+15712978633',
     initial: 'Б',
-    image: 'images/avatars/boris.png'
+    image: 'boris.png'
   },
   {
     name: 'Медиум Силвия',
@@ -32,7 +33,7 @@ const mediumsData = [
     price: 2.92,
     call: 'tel:+15712978633',
     initial: 'С',
-    image: 'images/avatars/silvia.png'
+    image: 'silvia.png'
   },
   {
     name: 'Медиум Даниела',
@@ -40,7 +41,7 @@ const mediumsData = [
     price: 2.92,
     call: 'tel:+15712978633',
     initial: 'Д',
-    image: 'images/avatars/daniela.png'
+    image: 'daniela.png'
   }
 ];
 
