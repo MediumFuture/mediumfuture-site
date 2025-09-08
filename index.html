@@ -2,228 +2,121 @@
 <html lang="bg">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Medium Future – Гледане на бъдещето</title>
-  <!-- SEO мета тагове -->
-  <meta name="description" content="Medium Future – онлайн платформа за гледане в бъдещето. Свържете се с нашите медиуми за професионални консултации чрез чат и телефон.">
-  <meta name="keywords" content="гледане, бъдеще, медиуми, таро, ясновидство, нумерология">
-  <!-- Open Graph тагове за социални мрежи -->
-  <meta property="og:title" content="Medium Future – Гледане на бъдещето">
-  <meta property="og:description" content="Свържете се с нашите медиуми за професионални консултации чрез чат и телефон.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mediumfuture.bg/index.html">
-  <meta property="og:image" content="https://mediumfuture.bg/images/favicon.png">
-  <!-- Canonical линк -->
-  <link rel="canonical" href="https://mediumfuture.bg/index.html">
-  <!-- CSS и икона -->
+  <title>Medium Future — Вашият гид към медиумите</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
 <body>
-  <!-- Герой секция с голяма "картина" под формата на градиент -->
-  <header class="hero">
-    <!-- Горна навигационна лента -->
-    <nav class="top-nav">
-      <div class="logo">Medium&nbsp;Future</div>
-      <ul class="nav-links">
-        <li><a href="#medium-cards">Медиуми</a></li>
-        <li><a href="news.html">Новини</a></li>
-        <li><a href="about.html">За&nbsp;нас</a></li>
-        <li><a href="contact.html">Контакти</a></li>
-        <li><a href="join.html">Стани медиум</a></li>
-      </ul>
-      <div class="auth-buttons">
-        <!-- Променяме линковете, за да отварят модални прозорци -->
-        <a href="#" class="signup-btn" onclick="openModal('signupModal'); return false;">Регистрация</a>
-        <a href="#" class="login-btn" onclick="openModal('loginModal'); return false;">Вход</a>
-      </div>
+  <!-- Header -->
+  <header class="site-header">
+    <a class="logo" href="index.html">Medium Future</a>
+    <nav class="nav-desktop">
+      <a href="#mediums">Медиуми</a>
+      <a href="#why">Защо нас</a>
+      <a href="#best">Най‑добрите</a>
+      <a href="pricing.html">Пакети</a>
+      <a href="#articles">Новини</a>
+      <a href="contact.html">Контакти</a>
     </nav>
-    <div class="hero-content">
-      <h1>Открийте своя път към успеха</h1>
-      <p>Доверете се на нашите медиуми за ясновидство, таро, астрология и повече</p>
-      <a href="pricing.html" class="cta-button">Започнете</a>
-    </div>
-    <div class="badge">
-      <span class="minutes">5 мин</span>
-      <span class="free">БЕЗПЛАТНО</span>
+    <div class="header-actions">
+      <a class="btn-signup" href="join.html">Регистрация</a>
+      <a class="btn-login" href="login.html">Вход</a>
     </div>
   </header>
 
-  <!-- Секция "Медиуми онлайн" с бутон за разглеждане -->
-  <section class="psychics-online">
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Открийте своя път към успеха</h1>
+      <p>Доверете се на нашите медиуми за ясновидство, таро, астрология и още.</p>
+      <a class="btn-primary" href="#mediums">Започнете</a>
+      <div class="badge-free">5 мин <span>БЕЗПЛАТНО</span></div>
+    </div>
+    <div class="hero-graphic"></div>
+  </section>
+
+  <!-- Mediums online -->
+  <section id="mediums" class="mediums-section">
     <h2>Медиуми онлайн</h2>
-    <p>В момента десетки медиуми очакват вашето обаждане или чат.</p>
-    <a href="#medium-cards" class="browse-button">Прегледай всички медиуми</a>
+    <div class="mediums-slider" id="mediums-slider"></div>
+    <a class="btn-secondary" href="mediums.html">Виж всички медиуми</a>
   </section>
 
-  <!-- Секция с препоръчани медиуми -->
-  <section class="recommended">
-    <h2>Препоръчани медиуми</h2>
-    <div class="cards recommended-cards">
-        <div class="card">
-        <div class="avatar">
-          <!-- Изображението е в кореновата директория -->
-          <a href="ana.html"><img class="avatar-img" src="ana.png" alt="Медиум Ана"></a>
-        </div>
-        <h3><a href="ana.html">Медиум Ана</a></h3>
-        <p>Специалист в таро и астрология.</p>
-        <p>Рейтинг: &#9733;&#9733;&#9733;&#9733;&#9734;</p>
-        <div class="buttons">
-          <!-- Използваме нашия Twilio номер за обаждания -->
-          <a href="tel:+15712978633" class="call-button">Обади се</a>
-          <a href="chat.html?medium=Медиум%20Ана" class="chat-button">Чат</a>
-        </div>
+  <!-- Why choose us -->
+  <section id="why" class="why-section">
+    <h2>Защо да изберете Medium Future?</h2>
+    <div class="why-grid">
+      <div class="why-item">
+        <div class="icon">🌟</div>
+        <h3>5 минути безплатно</h3>
+        <p>Получавате първите 5 минути безплатно при първата си сесия.</p>
       </div>
-        <div class="card">
-        <div class="avatar">
-          <!-- Изображението е в кореновата директория -->
-          <a href="boris.html"><img class="avatar-img" src="boris.png" alt="Медиум Борис"></a>
-        </div>
-        <h3><a href="boris.html">Медиум Борис</a></h3>
-        <p>Нумерология и руни – вашият личен водач.</p>
-        <p>Рейтинг: &#9733;&#9733;&#9733;&#9734;&#9734;</p>
-        <div class="buttons">
-          <a href="tel:+15712978633" class="call-button">Обади се</a>
-          <a href="chat.html?medium=Медиум%20Борис" class="chat-button">Чат</a>
-        </div>
+      <div class="why-item">
+        <div class="icon">👥</div>
+        <h3>Професионални медиуми</h3>
+        <p>Нашите медиуми са проверени и с богат опит.</p>
       </div>
-        <div class="card">
-        <div class="avatar">
-          <!-- Снимка на Силвия (гледане на кафе) от кореновата директория -->
-          <a href="silvia.html"><img class="avatar-img" src="silvia.png" alt="Медиум Силвия"></a>
-        </div>
-        <h3><a href="silvia.html">Медиум Силвия</a></h3>
-        <p>Кафе на зърна и ясновидство – търсите ли отговор?</p>
-        <p>Рейтинг: &#9733;&#9733;&#9733;&#9733;&#9733;</p>
-        <div class="buttons">
-          <a href="tel:+15712978633" class="call-button">Обади се</a>
-          <a href="chat.html?medium=Медиум%20Силвия" class="chat-button">Чат</a>
-        </div>
+      <div class="why-item">
+        <div class="icon">🕒</div>
+        <h3>24/7 достъп</h3>
+        <p>Винаги можете да се свържете с нашите медиуми, когато имате нужда.</p>
+      </div>
+      <div class="why-item">
+        <div class="icon">💬</div>
+        <h3>Чат и обаждане</h3>
+        <p>Изберете между чат или обаждане – както е удобно за вас.</p>
       </div>
     </div>
   </section>
 
-  <!-- Секция с медиумите -->
-  <section class="mediums">
-    <h2>Нашите медиуми</h2>
-    <!-- Контейнер за динамичните карти на медиумите -->
-    <div id="medium-cards" class="cards"></div>
-  </section>
-
-  <!-- Секция с отзиви -->
-  <section id="testimonials" class="testimonials">
-    <h2>Отзиви</h2>
-    <div class="testimonial">
-      <p class="quote">"Изключително преживяване! Консултацията ми помогна да видя нова перспектива и да взема важни решения."</p>
-      <p class="author">— Мария</p>
+  <!-- Best online psychics -->
+  <section id="best" class="best-section">
+    <div class="text">
+      <h2>Най‑добрите медиуми онлайн</h2>
+      <p>Тествани и опитни медиуми са готови да споделят своите прозрения. Изберете този, който е най‑подходящ за вас.</p>
+      <a class="btn-primary" href="#mediums">Открийте своя медиум</a>
     </div>
-    <div class="testimonial">
-      <p class="quote">"Сесиите са успокояващи и точни. Чувствам се по-уверена и спокойна за бъдещето."</p>
-      <p class="author">— Николай</p>
-    </div>
-    <div class="testimonial">
-      <p class="quote">"Препоръчвам на всеки, който се нуждае от насока и ясни отговори. Отлично обслужване!"</p>
-      <p class="author">— Десислава</p>
+    <div class="image">
+      <img src="images/best-medium.png" alt="Най‑добрите медиуми">
     </div>
   </section>
 
-  <!-- Секция "Защо да изберете Medium Future?" -->
-  <section class="why-us">
-    <h2>Защо да изберете Medium&nbsp;Future?</h2>
-    <div class="features">
-      <div class="feature">
-        <h3>👁️ Професионализъм</h3>
-        <p>Нашите медиуми са селектирани с внимание и преминават през строг процес на оценка, за да ви предоставят най‑точните и надеждни прогнози.</p>
-      </div>
-      <div class="feature">
-        <h3>🎁 Първи минути безплатно</h3>
-        <p>Получавате пет безплатни минути при първата си консултация, за да опознаете нашата платформа без риск.</p>
-      </div>
-      <div class="feature">
-        <h3>⏰ 24/7 достъп</h3>
-        <p>Платформата е достъпна по всяко време, за да може да се свържете с вашия медиум, когато имате нужда.</p>
-      </div>
-      <div class="feature">
-        <h3>🌟 Обратна връзка</h3>
-        <p>Получавате отзиви и оценки за всеки медиум, за да направите информиран избор при следващата си сесия.</p>
-      </div>
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-content">
+      <p>&copy; 2025 Medium Future. Всички права запазени.</p>
     </div>
-  </section>
-
-  <!-- Футър -->
-  <footer>
-    <nav>
-      <a href="about.html">За нас</a>
-      <a href="contact.html">Контакти</a>
-      <a href="news.html">Новини</a>
-      <a href="pricing.html">Цени</a>
-    </nav>
-    <p>&copy; 2025 Medium Future. Всички права запазени.</p>
   </footer>
 
-  <!-- Плаващ бутон за връщане в началото -->
-  <button id="scrollTopBtn" title="Върни се горе">↑</button>
-
-  <!-- Модален прозорец за регистрация -->
-  <div id="signupModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('signupModal')">&times;</span>
-      <h2>Регистрация</h2>
-      <form id="signupForm">
-        <input type="text" placeholder="Име" required>
-        <input type="email" placeholder="Имейл" required>
-        <input type="password" placeholder="Парола" required>
-        <button type="submit">Регистрирай се</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Модален прозорец за вход -->
-  <div id="loginModal" class="modal">
-    <div class="modal-content">
-      <span class="close" onclick="closeModal('loginModal')">&times;</span>
-      <h2>Вход</h2>
-      <form id="loginForm">
-        <input type="email" placeholder="Имейл" required>
-        <input type="password" placeholder="Парола" required>
-        <button type="submit">Влез</button>
-      </form>
-    </div>
-  </div>
-
-  <!-- Скриптове за модалните прозорци и бутона за връщане горе -->
+  <!-- Mediums slider script -->
   <script>
-    // Отваряне на модален прозорец
-    function openModal(id) {
-      document.getElementById(id).style.display = 'block';
-    }
-    // Затваряне на модален прозорец
-    function closeModal(id) {
-      document.getElementById(id).style.display = 'none';
-    }
-    // Показване/скриване на бутона за връщане горе
-    window.onscroll = function() { toggleScrollButton(); };
-    function toggleScrollButton() {
-      const btn = document.getElementById('scrollTopBtn');
-      if (!btn) return;
-      const scrollPos = document.body.scrollTop || document.documentElement.scrollTop;
-      btn.style.display = scrollPos > 200 ? 'block' : 'none';
-    }
-    // Scroll to top behaviour
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-    // Свързване на клика към функцията
     document.addEventListener('DOMContentLoaded', function() {
-      const scrollBtn = document.getElementById('scrollTopBtn');
-      if (scrollBtn) {
-        scrollBtn.addEventListener('click', scrollToTop);
-      }
+      var slider = document.getElementById('mediums-slider');
+      var mediums = [
+        { name: 'Ани', specialty: 'Ясновидство', image: 'ana.png', price: '2.92' },
+        { name: 'Борис', specialty: 'Астрология', image: 'boris.png', price: '2.92' },
+        { name: 'Силвия', specialty: 'Таро', image: 'silvia.png', price: '2.92' },
+        { name: 'Даниела', specialty: 'Нумерология', image: 'daniela.png', price: '2.92' }
+      ];
+      mediums.forEach(function(m) {
+        var card = document.createElement('div');
+        card.className = 'medium-card';
+        var html = '' +
+          '<div class="ribbon">Топ</div>' +
+          '<img src="images/' + m.image + '" alt="' + m.name + '">' +
+          '<h3>' + m.name + '</h3>' +
+          '<div class="specialty">' + m.specialty + '</div>' +
+          '<div class="rating">★★★★★ 4.8</div>' +
+          '<div class="actions">' +
+            '<a href="tel:+15712978633" class="call">Обади се</a>' +
+            '<a href="chat.html?medium=' + m.name.toLowerCase() + '" class="chat">Чат</a>' +
+          '</div>' +
+          '<div class="price">' + m.price + ' €/мин</div>';
+        card.innerHTML = html;
+        slider.appendChild(card);
+      });
     });
   </script>
-  <!-- Скрипт за зареждане на медиумите -->
-  <!-- Добавяне на параметър за версия към пътя на скрипта, за да принуди браузъра да зареди новата версия -->
-  <!-- Добавяме параметър за версия, за да изчистим кеша при актуализации -->
-  <script src="mediums.js?v=3"></script>
 </body>
 </html>
