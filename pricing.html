@@ -3,89 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Цени – Medium Future</title>
-  <!-- SEO и Open Graph -->
-  <meta name="description" content="Вижте пакетите и цените на Medium Future – изберете най-подходящия пакет от минути за вашата консултация.">
+  <title>Пакети и цени – Medium Future</title>
+  <!-- SEO and favicon -->
+  <meta name="description" content="Вижте пакетите и цените на Medium Future – изберете най‑подходящия пакет от минути за вашата консултация.">
   <meta name="keywords" content="пакети, цени, консултации, минути">
-  <meta property="og:title" content="Пакети и цени – Medium Future">
-  <meta property="og:description" content="Изберете най-подходящия пакет от минути за вашата консултация.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mediumfuture.bg/pricing.html">
-  <meta property="og:image" content="https://mediumfuture.bg/images/favicon.png">
-  <link rel="canonical" href="https://mediumfuture.bg/pricing.html">
-  <!-- Стил и икона -->
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
 <body>
-  <!-- Герой секция за цени -->
+  <!-- Page hero -->
   <header class="hero small">
     <h1>Пакети и цени</h1>
-    <p>Изберете най-подходящия пакет от минути за вашата консултация</p>
+    <p>Изберете най‑подходящия пакет от минути за вашата консултация</p>
   </header>
 
   <section class="pricing">
     <h2>Нашите предложения</h2>
     <div class="packages">
-      <!-- Пакет 1 -->
+      <!-- Package 1 -->
       <div class="package">
         <h3>Основен пакет</h3>
         <p class="minutes">10 минути</p>
         <p class="price">30&nbsp;€</p>
         <p>Перфектен за кратка консултация с медиум.</p>
-        <!-- PayPal плащане чрез HTML форма за личен акаунт -->
+        <!-- PayPal payment form (existing) -->
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
           <input type="hidden" name="cmd" value="_xclick">
-          <!-- Използваме предоставения от потребителя merchant ID като бизнес идентификатор -->
           <input type="hidden" name="business" value="TW2CZTFCS3EYS">
           <input type="hidden" name="item_name" value="Основен пакет – 10 минути">
           <input type="hidden" name="amount" value="30.00">
           <input type="hidden" name="currency_code" value="EUR">
-          <!-- След успешно плащане пренасочваме към чат страницата и добавяме кредити като параметър -->
-          <input type="hidden" name="return" value="https://mediumfuture.github.io/mediumfuture-site/chat.html?credits=10">
-          <!-- След отказ от плащане връщаме отново към страницата с цени -->
-          <input type="hidden" name="cancel_return" value="https://mediumfuture.github.io/mediumfuture-site/pricing.html">
-          <input type="submit" class="buy-button" value="Купи">
+          <input type="hidden" name="return" value="chat.html?credits=10">
+          <input type="hidden" name="cancel_return" value="pricing.html">
+          <input type="submit" class="buy-button" value="Купи с PayPal">
         </form>
+        <!-- Card payment option: link to external payment page -->
+        <a class="card-button" href="#" onclick="alert('Моля, конфигурирайте линк към системата за плащане с карта.'); return false;">Купи с карта</a>
       </div>
-      <!-- Пакет 2 -->
+      <!-- Package 2 -->
       <div class="package">
         <h3>Стандартен пакет</h3>
         <p class="minutes">25 минути</p>
         <p class="price">65&nbsp;€</p>
-        <p>За по-задълбочени въпроси и насоки.</p>
+        <p>За по‑задълбочени въпроси и насоки.</p>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
           <input type="hidden" name="cmd" value="_xclick">
           <input type="hidden" name="business" value="TW2CZTFCS3EYS">
           <input type="hidden" name="item_name" value="Стандартен пакет – 25 минути">
           <input type="hidden" name="amount" value="65.00">
           <input type="hidden" name="currency_code" value="EUR">
-          <input type="hidden" name="return" value="https://mediumfuture.github.io/mediumfuture-site/chat.html?credits=25">
-          <input type="hidden" name="cancel_return" value="https://mediumfuture.github.io/mediumfuture-site/pricing.html">
-          <input type="submit" class="buy-button" value="Купи">
+          <input type="hidden" name="return" value="chat.html?credits=25">
+          <input type="hidden" name="cancel_return" value="pricing.html">
+          <input type="submit" class="buy-button" value="Купи с PayPal">
         </form>
+        <a class="card-button" href="#" onclick="alert('Моля, конфигурирайте линк към системата за плащане с карта.'); return false;">Купи с карта</a>
       </div>
-      <!-- Пакет 3 -->
+      <!-- Package 3 -->
       <div class="package">
         <h3>Премиум пакет</h3>
         <p class="minutes">60 минути</p>
         <p class="price">150&nbsp;€</p>
-        <p>Най-добрият избор за цялостна консултация и планиране.</p>
+        <p>Най‑добрият избор за цялостна консултация и планиране.</p>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
           <input type="hidden" name="cmd" value="_xclick">
           <input type="hidden" name="business" value="TW2CZTFCS3EYS">
           <input type="hidden" name="item_name" value="Премиум пакет – 60 минути">
           <input type="hidden" name="amount" value="150.00">
           <input type="hidden" name="currency_code" value="EUR">
-          <input type="hidden" name="return" value="https://mediumfuture.github.io/mediumfuture-site/chat.html?credits=60">
-          <input type="hidden" name="cancel_return" value="https://mediumfuture.github.io/mediumfuture-site/pricing.html">
-          <input type="submit" class="buy-button" value="Купи">
+          <input type="hidden" name="return" value="chat.html?credits=60">
+          <input type="hidden" name="cancel_return" value="pricing.html">
+          <input type="submit" class="buy-button" value="Купи с PayPal">
         </form>
+        <a class="card-button" href="#" onclick="alert('Моля, конфигурирайте линк към системата за плащане с карта.'); return false;">Купи с карта</a>
       </div>
     </div>
   </section>
 
-  <!-- Футър -->
+  <!-- Footer -->
   <footer>
     <nav>
       <a href="index.html">Начало</a>
@@ -94,9 +88,7 @@
       <a href="news.html">Новини</a>
       <a href="pricing.html">Цени</a>
     </nav>
-    <p>&copy; 2025 Medium Future. Всички права запазени.</p>
+    <p>© 2025 Medium Future. Всички права запазени.</p>
   </footer>
-
-  <!-- PayPal интеграция чрез HTML форми: скриптовете на Smart Buttons са премахнати, защото ползваме класически бутони.-->
 </body>
 </html>
