@@ -37,8 +37,18 @@
           <input type="hidden" name="cancel_return" value="pricing.html">
           <input type="submit" class="buy-button" value="Купи с PayPal">
         </form>
-        <!-- Card payment option: direct link to PayPal checkout for credit/debit card -->
-        <a class="card-button" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&amp;business=TW2CZTFCS3EYS&amp;item_name=Основен пакет – 10 минути&amp;amount=30.00&amp;currency_code=EUR&amp;return=chat.html?credits=10&amp;cancel_return=pricing.html&amp;landing_page=billing" target="_blank">Купи с карта</a>
+        <!-- Credit/debit card payment via PayPal: forces the credit card checkout page -->
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="TW2CZTFCS3EYS">
+          <input type="hidden" name="item_name" value="Основен пакет – 10 минути">
+          <input type="hidden" name="amount" value="30.00">
+          <input type="hidden" name="currency_code" value="EUR">
+          <input type="hidden" name="return" value="chat.html?credits=10">
+          <input type="hidden" name="cancel_return" value="pricing.html">
+          <input type="hidden" name="landing_page" value="billing">
+          <input type="submit" class="card-button" value="Купи с карта">
+        </form>
       </div>
       <!-- Package 2 -->
       <div class="package">
@@ -56,7 +66,17 @@
           <input type="hidden" name="cancel_return" value="pricing.html">
           <input type="submit" class="buy-button" value="Купи с PayPal">
         </form>
-        <a class="card-button" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&amp;business=TW2CZTFCS3EYS&amp;item_name=Стандартен пакет – 25 минути&amp;amount=65.00&amp;currency_code=EUR&amp;return=chat.html?credits=25&amp;cancel_return=pricing.html&amp;landing_page=billing" target="_blank">Купи с карта</a>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="TW2CZTFCS3EYS">
+          <input type="hidden" name="item_name" value="Стандартен пакет – 25 минути">
+          <input type="hidden" name="amount" value="65.00">
+          <input type="hidden" name="currency_code" value="EUR">
+          <input type="hidden" name="return" value="chat.html?credits=25">
+          <input type="hidden" name="cancel_return" value="pricing.html">
+          <input type="hidden" name="landing_page" value="billing">
+          <input type="submit" class="card-button" value="Купи с карта">
+        </form>
       </div>
       <!-- Package 3 -->
       <div class="package">
@@ -74,7 +94,17 @@
           <input type="hidden" name="cancel_return" value="pricing.html">
           <input type="submit" class="buy-button" value="Купи с PayPal">
         </form>
-        <a class="card-button" href="https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&amp;business=TW2CZTFCS3EYS&amp;item_name=Премиум пакет – 60 минути&amp;amount=150.00&amp;currency_code=EUR&amp;return=chat.html?credits=60&amp;cancel_return=pricing.html&amp;landing_page=billing" target="_blank">Купи с карта</a>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="TW2CZTFCS3EYS">
+          <input type="hidden" name="item_name" value="Премиум пакет – 60 минути">
+          <input type="hidden" name="amount" value="150.00">
+          <input type="hidden" name="currency_code" value="EUR">
+          <input type="hidden" name="return" value="chat.html?credits=60">
+          <input type="hidden" name="cancel_return" value="pricing.html">
+          <input type="hidden" name="landing_page" value="billing">
+          <input type="submit" class="card-button" value="Купи с карта">
+        </form>
       </div>
     </div>
   </section>
