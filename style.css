@@ -776,13 +776,16 @@ section h2 {
   word-wrap: break-word;
 }
 
+/* Chat bubbles with theme colors */
 .message.received {
-  background: #e0dbfc;
+  /* light lavender to match the primary purple palette */
+  background: #e8e0ff;
   align-self: flex-start;
 }
 
 .message.sent {
-  background: #d5f2e3;
+  /* light peach/orange to complement the accent color */
+  background: #ffe8d8;
   align-self: flex-end;
 }
 
