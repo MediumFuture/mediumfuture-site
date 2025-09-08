@@ -3,171 +3,66 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Чат – Medium Future</title>
-  <!-- SEO мета тагове -->
-  <meta name="description" content="Чат с медиум от Medium Future – задайте своите въпроси и получете отговори на момента.">
-  <meta name="keywords" content="чат с медиум, бъдеще, консултации, ясновидство">
-  <!-- Open Graph тагове -->
-  <meta property="og:title" content="Чат с медиум – Medium Future">
-  <meta property="og:description" content="Задайте своите въпроси и получете ясновидски насоки от опитни медиуми.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://mediumfuture.bg/chat.html">
-  <meta property="og:image" content="https://mediumfuture.bg/images/favicon.png">
-  <!-- Canonical -->
-  <link rel="canonical" href="https://mediumfuture.bg/chat.html">
-  <!-- Стил и икона -->
+  <title>Чат с медиум – Medium Future</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="images/favicon.png" type="image/png">
 </head>
-<body>
-  <header class="hero small">
-    <h1>Чат с медиум</h1>
-    <p>Тук можете да симулирате чат с медиум. Реалната функционалност ще изисква интеграция със сървър.</p>
+<body class="chat-page">
+  <header class="chat-header">
+    <a class="logo" href="index.html">Medium Future</a>
   </header>
-  <!-- Чат интерфейс -->
-  <section class="chat-section">
-    <!-- Таймер за оставащи минути -->
-    <div id="timer" class="timer"></div>
 
-    <!-- Съобщение при липса на кредити -->
-    <div id="no-credit" class="no-credit" style="display:none;">
-      <p>Нямате налични минути. Моля, закупете пакет от <a href="pricing.html">страницата с цени</a>.</p>
-      <button id="demo-button" class="buy-button">Демо сесия (5 минути)</button>
+  <main class="chat-main">
+    <h2 id="chat-title">Чат с медиум</h2>
+    <div id="credit-info"></div>
+    <div class="chat-window" id="chat-window">
+      <!-- примерни съобщения -->
+      <div class="message received">Здравейте, как мога да помогна?</div>
+      <div class="message sent">Имам нужда от насока...</div>
     </div>
+    <div class="chat-input">
+      <input type="text" id="msg-input" placeholder="Въведете съобщение...">
+      <button id="send-btn">Изпрати</button>
+    </div>
+  </main>
 
-    <div id="chat-window" class="chat-window">
-      <div class="message bot">Здравейте! Как мога да ви помогна днес?</div>
-    </div>
-    <div class="chat-input-area">
-      <input type="text" id="user-message" placeholder="Въведете вашето съобщение..."/>
-      <button id="send-button">Изпрати</button>
-    </div>
-    <p class="chat-note">*Това е примерен чат. За реален чат ще трябва да се интегрира услуга като Tawk.to, Crisp или друга платформа за чат на живо.*</p>
-  </section>
-  <footer>
-    <nav>
-      <a href="index.html">Начало</a>
-      <a href="about.html">За нас</a>
-      <a href="contact.html">Контакти</a>
-      <a href="pricing.html">Цени</a>
-    </nav>
-    <p>&copy; 2025 Medium Future. Всички права запазени.</p>
+  <footer class="chat-footer">
+    <p>&copy; 2025 Medium Future.</p>
   </footer>
-  <!-- Скрипт за чат с брояч на минути и кредити -->
+
   <script>
-    // Текстове за автоматични отговори от "медиума"
-    const responses = [
-      'Моля, уточнете въпроса си.',
-      'Ще направя всичко възможно да ви помогна.',
-      'Бъдещето е подготвило интересни неща за вас.',
-      'Вашата интуиция е ключът към успеха.',
-      'Вярвайте в себе си и във вашата съдба.'
-    ];
+  // Функция за извличане на параметри от URL
+  function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
 
-    function addMessage(text, sender) {
-      const chatWindow = document.getElementById('chat-window');
-      const messageDiv = document.createElement('div');
-      messageDiv.classList.add('message');
-      messageDiv.classList.add(sender);
-      messageDiv.textContent = text;
-      chatWindow.appendChild(messageDiv);
-      chatWindow.scrollTop = chatWindow.scrollHeight;
+  document.addEventListener('DOMContentLoaded', function() {
+    // Задаване на заглавие според избрания медиум
+    var medium = getQueryParam('medium');
+    if (medium) {
+      medium = medium.charAt(0).toUpperCase() + medium.slice(1);
+      document.getElementById('chat-title').textContent = 'Чат с ' + medium;
     }
-
-    let timerInterval;
-    let secondsRemaining = 0;
-
-    // Обновява таймера и съхранява оставащите минути в localStorage
-    function updateTimer() {
-      const timerEl = document.getElementById('timer');
-      if (!timerEl) return;
-      const minutes = Math.floor(secondsRemaining / 60);
-      const seconds = secondsRemaining % 60;
-      timerEl.textContent = 'Оставащо време: ' + minutes + ':' + (seconds < 10 ? '0' + seconds : seconds);
-      // Записваме оставащите минути като дробно число в localStorage
-      const minutesLeft = secondsRemaining / 60;
-      localStorage.setItem('creditsMinutes', minutesLeft.toFixed(3));
-      if (secondsRemaining <= 0) {
-        clearInterval(timerInterval);
-        disableChat();
-      }
+    // Показване на оставащи минути
+    var credits = getQueryParam('credits');
+    if (credits) {
+      document.getElementById('credit-info').textContent = 'Оставащи минути: ' + credits;
     }
-
-    // Стартира сесията с определен брой минути
-    function startSession(minutes) {
-      secondsRemaining = Math.floor(minutes * 60);
-      updateTimer();
-      timerInterval = setInterval(function () {
-        secondsRemaining--;
-        updateTimer();
-      }, 1000);
-      // Показваме таймера и скриваме съобщението за липса на кредити
-      document.getElementById('timer').style.display = 'block';
-      document.getElementById('no-credit').style.display = 'none';
-      // Активираме полето за въвеждане и бутона
-      document.getElementById('user-message').disabled = false;
-      document.getElementById('send-button').disabled = false;
-    }
-
-    // Деактивира чат интерфейса при изчерпани минути
-    function disableChat() {
-      document.getElementById('user-message').disabled = true;
-      document.getElementById('send-button').disabled = true;
-      addMessage('Вашите минути са изчерпани. Моля, купете пакет, за да продължите.', 'bot');
-      document.getElementById('timer').textContent = 'Минутите са изчерпани';
-    }
-
-    window.addEventListener('DOMContentLoaded', function () {
-      const sendButton = document.getElementById('send-button');
-      const userInput = document.getElementById('user-message');
-      const demoButton = document.getElementById('demo-button');
-      const noCreditDiv = document.getElementById('no-credit');
-      const timerEl = document.getElementById('timer');
-
-      // По подразбиране таймерът е скрит
-      timerEl.style.display = 'none';
-
-      let credits = parseFloat(localStorage.getItem('creditsMinutes')) || 0;
-      // Проверяваме дали в URL има параметър credits, добавен след покупка през PayPal формата
-      const urlParams = new URLSearchParams(window.location.search);
-      const creditsParam = parseFloat(urlParams.get('credits') || '0');
-      if (!isNaN(creditsParam) && creditsParam > 0) {
-        credits += creditsParam;
-        // Записваме обновените кредити
-        localStorage.setItem('creditsMinutes', credits.toString());
-        // Можем да изчистим параметъра от URL чрез презареждане без параметри (по избор)
-        // history.replaceState(null, '', window.location.pathname);
+    // Слушател за изпращане на съобщения
+    document.getElementById('send-btn').addEventListener('click', function() {
+      var input = document.getElementById('msg-input');
+      var text = input.value.trim();
+      if (text !== '') {
+        var msgEl = document.createElement('div');
+        msgEl.className = 'message sent';
+        msgEl.textContent = text;
+        document.getElementById('chat-window').appendChild(msgEl);
+        input.value = '';
+        var chatWindow = document.getElementById('chat-window');
+        chatWindow.scrollTop = chatWindow.scrollHeight;
       }
-      // Ако има кредити, започваме с тях
-      if (credits > 0) {
-        startSession(credits);
-      } else {
-        // Показваме съобщението за липса на кредити и изключваме полето за въвеждане
-        noCreditDiv.style.display = 'block';
-        userInput.disabled = true;
-        sendButton.disabled = true;
-      }
-
-      // Демо сесия от 5 минути
-      if (demoButton) {
-        demoButton.addEventListener('click', function () {
-          startSession(5);
-        });
-      }
-
-      // Изпращане на съобщение
-      sendButton.addEventListener('click', function () {
-        const text = userInput.value.trim();
-        if (!text || secondsRemaining <= 0) return;
-        addMessage(text, 'user');
-        userInput.value = '';
-        // Автоматичен отговор
-        setTimeout(function () {
-          const reply = responses[Math.floor(Math.random() * responses.length)];
-          addMessage(reply, 'bot');
-        }, 800);
-      });
     });
+  });
   </script>
 </body>
 </html>
