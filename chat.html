@@ -30,6 +30,19 @@
     <p>&copy; 2025 Medium Future.</p>
   </footer>
 
+  <!-- Overlay за изчерпване на безплатните минути и предложения за продължение -->
+  <div id="upsellOverlay" class="upsell hidden">
+    <div class="upsell-card">
+      <h3>Безплатните 5 минути приключиха</h3>
+      <p>Можеш да продължиш разговора:</p>
+      <div class="upsell-actions">
+        <a class="btn-primary" href="pricing.html">Купи пакет минути</a>
+        <a class="btn-outline" href="tel:+15712978633">Обади се</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Скриптове за чат, управление на минутите и изчерпване -->
   <script>
   // Функция за извличане на параметри от URL
   function getQueryParam(name) {
@@ -37,17 +50,51 @@
     return urlParams.get(name);
   }
 
+  // Основна инициализация
   document.addEventListener('DOMContentLoaded', function() {
-    // Задаване на заглавие според избрания медиум
+    // Заглавие според избрания медиум
     var medium = getQueryParam('medium');
     if (medium) {
       medium = medium.charAt(0).toUpperCase() + medium.slice(1);
       document.getElementById('chat-title').textContent = 'Чат с ' + medium;
     }
-    // Показване на оставащи минути
-    var credits = getQueryParam('credits');
-    if (credits) {
-      document.getElementById('credit-info').textContent = 'Оставащи минути: ' + credits;
+    // Проверка за вписан потребител; ако няма – насочваме към регистрация
+    var userStr = localStorage.getItem('mf_user');
+    if (!userStr) {
+      // запазваме пътя за връщане
+      var next = window.location.pathname;
+      location.href = 'signup.html?next=' + encodeURIComponent(next + window.location.search);
+      return;
+    }
+    var user = JSON.parse(userStr);
+    // Актуализиране на оставащите минути в интерфейса
+    var creditInfoEl = document.getElementById('credit-info');
+    function updateCreditsDisplay() {
+      creditInfoEl.textContent = 'Оставащи минути: ' + Math.max(0, user.freeMinutes || 0);
+    }
+    updateCreditsDisplay();
+    // Ако в URL има credits (първо влизане след регистрация) – активираме бонуса
+    var creditsFromUrl = parseInt(getQueryParam('credits') || '0', 10);
+    if (creditsFromUrl > 0 && !user.freeActivatedAt) {
+      user.freeActivatedAt = Date.now();
+      user.freeMinutes = creditsFromUrl;
+      localStorage.setItem('mf_user', JSON.stringify(user));
+      updateCreditsDisplay();
+    }
+    // Таймер за изчерпване на минутите (на интервал 1 минута)
+    if (user.freeMinutes > 0) {
+      var interval = setInterval(function() {
+        user.freeMinutes--;
+        localStorage.setItem('mf_user', JSON.stringify(user));
+        updateCreditsDisplay();
+        if (user.freeMinutes <= 0) {
+          clearInterval(interval);
+          document.getElementById('upsellOverlay').classList.remove('hidden');
+        }
+      }, 60000);
+    } else {
+      // Ако няма свободни минути – директно показваме предложенията
+      document.getElementById('upsellOverlay').classList.remove('hidden');
     }
     // Слушател за изпращане на съобщения
     document.getElementById('send-btn').addEventListener('click', function() {

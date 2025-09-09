@@ -21,7 +21,8 @@
       <a href="contact.html">Контакти</a>
     </nav>
     <div class="header-actions">
-      <a class="btn-signup" href="join.html">Регистрация</a>
+      <!-- Директно към страницата за регистрация -->
+      <a class="btn-signup" href="signup.html">Регистрация</a>
       <a class="btn-login" href="login.html">Вход</a>
     </div>
   </header>
@@ -160,6 +161,26 @@
         card.innerHTML = html;
         slider.appendChild(card);
       });
+    });
+  </script>
+
+  <!-- Скрипт за проверка дали има вписан потребител. Ако няма, чатът води към регистрация -->
+  <script>
+    function isLogged() {
+      return !!localStorage.getItem('mf_user');
+    }
+    document.addEventListener('click', function(e) {
+      var a = e.target.closest('a');
+      if (!a) return;
+      var href = a.getAttribute('href') || '';
+      // Ако щракнат линк към чат и потребителят не е регистриран, пренасочваме към signup
+      if (href.startsWith('chat.html')) {
+        if (!isLogged()) {
+          e.preventDefault();
+          var u = new URL(href, window.location.href);
+          window.location.href = 'signup.html?next=chat.html&medium=' + (u.searchParams.get('medium') || '');
+        }
+      }
     });
   </script>
 </body>

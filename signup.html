@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Регистрация – Medium Future</title>
+  <!-- Връзка към основните стилове; добавяме версия за кеширане -->
+  <link rel="stylesheet" href="style.css?v=3">
+</head>
+<body class="auth-page">
+  <!-- Горна лента за регистрация -->
+  <header class="auth-header">
+    <a class="logo" href="index.html">Medium Future</a>
+  </header>
+
+  <main class="auth-main">
+    <!-- Кратко приветствие -->
+    <section class="auth-hero">
+      <h1>Създай профил</h1>
+      <p>Получаваш <strong>5 минути безплатно</strong> за първа консултация.</p>
+    </section>
+
+    <!-- Форма за регистрация -->
+    <section class="auth-card">
+      <form id="signupForm" novalidate>
+        <div class="form-grid">
+          <label>
+            Име и фамилия
+            <input type="text" name="name" required placeholder="Иван Иванов">
+          </label>
+          <label>
+            Имейл
+            <input type="email" name="email" required placeholder="name@email.com">
+          </label>
+          <label>
+            Телефон (за обаждане)
+            <input type="tel" name="phone" required placeholder="+359 88 123 4567">
+          </label>
+          <label>
+            Парола
+            <input type="password" name="password" required minlength="6" placeholder="Минимум 6 символа">
+          </label>
+        </div>
+        
+        <label class="checkline">
+          <input type="checkbox" id="terms" required>
+          Съгласен съм с <a href="privacy.html" target="_blank">Политика за поверителност</a> и <a href="terms.html" target="_blank">Общи условия</a>.
+        </label>
+
+        <button class="btn-primary" type="submit">Регистрация</button>
+        <p class="auth-note">Вече имаш профил? <a href="login.html">Вход</a></p>
+      </form>
+    </section>
+  </main>
+
+  <footer class="auth-footer">
+    <p>© 2025 Medium Future.</p>
+  </footer>
+
+  <script>
+    // Помощна функция за извличане на параметър от URL
+    function getParam(name) {
+      return new URLSearchParams(window.location.search).get(name);
+    }
+    
+    // Ако вече има записан потребител в localStorage, пренасочваме към следващия URL
+    (function() {
+      var u = localStorage.getItem('mf_user');
+      if (u) {
+        var next = getParam('next');
+        if (next) {
+          // Добавяме оригиналните параметри към URL-то
+          location.replace(next + window.location.search.replace('?', '&'));
+        }
+      }
+    })();
+    
+    // Регистрация – записваме потребителя в localStorage и даваме 5 минути бонус
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      // Проверка за валидност на формата
+      if (!this.reportValidity()) return;
+      var fd = new FormData(this);
+      var user = {
+        name: fd.get('name'),
+        email: fd.get('email'),
+        phone: fd.get('phone'),
+        createdAt: Date.now(),
+        freeMinutes: 5,
+        freeConsumed: 0
+      };
+      localStorage.setItem('mf_user', JSON.stringify(user));
+      // Определяме къде да пренасочим след регистрация
+      var next = getParam('next') || 'index.html';
+      var medium = getParam('medium');
+      var query = [];
+      if (medium) query.push('medium=' + encodeURIComponent(medium));
+      query.push('credits=5');
+      var qStr = query.length ? '?' + query.join('&') : '';
+      location.replace(next + qStr);
+    });
+  </script>
+</body>
+</html>

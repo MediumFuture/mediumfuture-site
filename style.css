@@ -823,3 +823,161 @@ section h2 {
   font-size: 0.875rem;
   color: #666;
 }
+
+/* -------- Auth / Signup ---------- */
+.auth-page {
+  background: var(--color-light-bg);
+  font-family: 'Montserrat', sans-serif;
+  color: #1a202c;
+}
+.auth-header {
+  background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+  padding: 1rem 2rem;
+}
+.auth-header .logo {
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 1.25rem;
+}
+.auth-main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 2rem 1rem 3rem;
+}
+.auth-hero {
+  text-align: center;
+  margin: 1rem 0 1.5rem;
+}
+.auth-hero h1 {
+  color: var(--color-primary);
+  margin: 0 0 .25rem;
+}
+.auth-hero p {
+  color: #555;
+  margin: 0;
+}
+.auth-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(31,38,135,.07);
+  padding: 1.5rem;
+  margin-top: 1rem;
+}
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.form-grid label {
+  font-size: .95rem;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  gap: .35rem;
+}
+.form-grid input {
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: .75rem .9rem;
+  font-size: 1rem;
+  transition: box-shadow .2s, border-color .2s;
+}
+.form-grid input:focus {
+  outline: none;
+  border-color: #c7b5ff;
+  box-shadow: 0 0 0 3px rgba(99,102,241,.15);
+}
+.checkline {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  margin: .5rem 0 1rem;
+  color: #555;
+}
+.checkline a {
+  color: var(--color-primary);
+  text-decoration: underline;
+}
+.auth-note {
+  text-align: center;
+  color: #666;
+  margin: .75rem 0 0;
+}
+.auth-note a {
+  color: var(--color-primary);
+}
+.btn-primary {
+  display: inline-block;
+  background: var(--color-accent);
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  padding: .85rem 1.2rem;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  margin-top: .5rem;
+  transition: transform .05s, box-shadow .2s;
+}
+.btn-primary:hover {
+  box-shadow: 0 10px 25px rgba(255,122,0,.2);
+}
+.btn-primary:active {
+  transform: scale(.98);
+}
+@media (max-width: 780px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.auth-footer {
+  text-align: center;
+  padding: 2rem 0;
+  color: #8c8c8c;
+  font-size: .9rem;
+}
+
+/* Upsell overlay след изчерпване на безплатните минути */
+.upsell.hidden {
+  display: none;
+}
+.upsell {
+  position: fixed;
+  inset: 0;
+  background: rgba(17,24,39,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+.upsell-card {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  text-align: center;
+  width: min(520px, 92%);
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+.upsell-card h3 {
+  margin: .25rem 0 .5rem;
+  color: var(--color-primary);
+}
+.upsell-actions {
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+  margin-top: .75rem;
+}
+.btn-outline {
+  display: inline-block;
+  border: 2px solid var(--color-primary);
+  color: var(--color-primary);
+  padding: .65rem 1.1rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 700;
+}
+.btn-outline:hover {
+  background: rgba(99,102,241,.08);
+}
